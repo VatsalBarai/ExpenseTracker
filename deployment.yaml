@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: expense-app
+  template:
+    metadata:
+      labels:
+        app: expense-app
+    spec:
+      containers:
+        - name: expense-container
+          image: expense-tracker:v3
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_TITLE
+              valueFrom:
+                configMapKeyRef:
+                  name: expense-config
+                  key: APP_TITLE
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: expense-secret
+                  key: ADMIN_EMAIL

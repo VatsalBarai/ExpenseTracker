@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: expense-service
+spec:
+  type: ClusterIP        # Changed from NodePort
+  selector:
+    app: expense-app
+  ports:
+    - protocol: TCP
+      port: 5000         # Port the service exposes
+      targetPort: 5000   # Port your app listens on inside pod

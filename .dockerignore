@@ -1,0 +1,9 @@
+venv/
+backup-original/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+README.md
